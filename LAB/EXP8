@@ -1,0 +1,16 @@
+import pandas as pd
+
+df = pd.DataFrame({
+    'Product': ['Pen', 'Book', 'Pen', 'Bag', 'Book', 'Pencil'],
+    'Date': ['2026-09-15', '2026-09-20', '2026-10-01',
+             '2026-10-05', '2026-10-08', '2026-10-10'],
+    'Quantity': [10, 15, 20, 8, 25, 12]
+})
+
+df['Date'] = pd.to_datetime(df['Date'])
+
+last_month = df[df['Date'] >= '2026-09-13']
+
+top5 = last_month.groupby('Product')['Quantity'].sum().sort_values(ascending=False).head(5)
+
+print(top5)
