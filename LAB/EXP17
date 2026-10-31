@@ -1,0 +1,28 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from collections import Counter
+import string
+
+feedback = [
+    "Good product and good quality",
+    "Product quality is excellent",
+    "Good product and fast delivery",
+    "Excellent product quality"
+]
+
+stop = ['the', 'and', 'is', 'a', 'to', 'of', 'in']
+
+words = []
+
+for text in feedback:
+    text = text.lower().translate(str.maketrans('', '', string.punctuation))
+    words += [w for w in text.split() if w not in stop]
+
+freq = Counter(words)
+n = int(input("Enter N: "))
+top = freq.most_common(n)
+
+print(top)
+
+pd.Series(dict(top)).plot(kind='bar')
+plt.show()
