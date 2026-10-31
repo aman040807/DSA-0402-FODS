@@ -1,0 +1,12 @@
+import numpy as np
+from scipy import stats
+
+drug = [12,15,10,14,13,16,11,14,15,12]
+placebo = [5,6,4,7,5,6,3,8,4,5]
+
+for name, data in [('Drug', drug), ('Placebo', placebo)]:
+    mean = np.mean(data)
+    ci = stats.t.interval(0.95, df=len(data)-1,
+                          loc=mean, scale=stats.sem(data))
+    print(name, "Mean:", mean)
+    print("95% CI:", ci)
