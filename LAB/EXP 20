@@ -1,0 +1,20 @@
+from scipy import stats
+
+A = [0.12, 0.14, 0.13, 0.11, 0.15,
+     0.12, 0.13, 0.14, 0.11, 0.15]
+
+B = [0.15, 0.16, 0.14, 0.17, 0.18,
+     0.16, 0.15, 0.17, 0.16, 0.18]
+
+print("Mean A:", sum(A)/len(A))
+print("Mean B:", sum(B)/len(B))
+
+t, p = stats.ttest_ind(A, B)
+
+print("T-value:", t)
+print("P-value:", p)
+
+if p < 0.05:
+    print("Significant difference")
+else:
+    print("No significant difference")
